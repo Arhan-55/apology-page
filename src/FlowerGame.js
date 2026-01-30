@@ -18,44 +18,30 @@ const FlowerGame = () => {
     "I promise to do better!"
   ];
 
-  const createFlower = () => {
-    const newFlower = {
-      id: Date.now(),
-      emoji: flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)],
-      x: Math.random() * 80 + 10,
-      y: -20,
-      size: Math.random() * 20 + 20,
-      speed: Math.random() * 2 + 1,
-      rotation: Math.random() * 360,
-    };
-    setFlowers(prev => [...prev, newFlower]);
-  };
-
   const collectFlower = (id) => {
     setFlowers(prev => prev.filter(f => f.id !== id));
     setScore(prev => prev + 1);
     setMessage(messages[Math.floor(Math.random() * messages.length)]);
   };
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    if (isCollecting) {
-      const flowerEmojis = ['🌹', '🌷', '🌸', '💐', '🌺', '🌼', '🥀', '🌻'];
-      const newFlower = {
-        id: Date.now(),
-        emoji: flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)],
-        x: Math.random() * 80 + 10,
-        y: -20,
-        size: Math.random() * 20 + 20,
-        speed: Math.random() * 2 + 1,
-        rotation: Math.random() * 360,
-      };
-      setFlowers(prev => [...prev, newFlower]);
-    }
-  }, 500);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isCollecting) {
+        const newFlower = {
+          id: Date.now(),
+          emoji: flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)],
+          x: Math.random() * 80 + 10,
+          y: -20,
+          size: Math.random() * 20 + 20,
+          speed: Math.random() * 2 + 1,
+          rotation: Math.random() * 360,
+        };
+        setFlowers(prev => [...prev, newFlower]);
+      }
+    }, 500);
 
-  return () => clearInterval(interval);
-}, [isCollecting]);
+    return () => clearInterval(interval);
+  }, [isCollecting]);
 
   useEffect(() => {
     const updateFlowers = () => {
