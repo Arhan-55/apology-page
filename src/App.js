@@ -83,12 +83,6 @@ function App() {
             </div>
           </div>
           
-          {/* Instructions */}
-          {!isEnvelopeOpen && (
-            <p className="text-center text-gray-600 mt-6 text-lg">
-              Click on the envelope to open my apology letter 💖
-            </p>
-          )}
         </div>
 
         {/* Letter Modal */}
